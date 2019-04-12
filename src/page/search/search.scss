@@ -1,0 +1,32 @@
+.page-search {
+    label.label{
+        border-bottom: 2px solid #FFF;
+        color: #FFF;
+        .placeholder-icon {
+            color: #FFF;
+        }
+        input{
+            color:#FFF;
+        }
+    }
+    .btn-keyword {
+        padding: 0 2px;
+        max-width: 150px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display: inline-block;
+        border-radius: 0;
+    }
+    .btn-clear {
+        position: absolute;
+        right: 65px;
+        top: 4px;
+        z-index: 999;
+        font-size: 20px !important;
+    }
+    .btn-clear:before {
+        font-size: 20px !important;
+    }
+
+   
+}

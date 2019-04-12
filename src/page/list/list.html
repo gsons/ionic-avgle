@@ -1,0 +1,31 @@
+<ion-view ng-controller="listCtrl">
+    <ion-header-bar class="item-input-inset item-select bar-assertive item-assertive">
+        <button class="button button-assertive icon ion-ios-search-strong" ng-click="$search()"></button>
+        &nbsp;
+        <button class="button button-assertive icon ion-ios-flask-outline" ng-click="openPopover()"></button>
+        <select ng-model="categoryId" ng-change="change(categoryId)">
+            <option ng-repeat="vo in categories" value="{{vo.CHID}}">{{vo.name}}</option>
+        </select>
+    </ion-header-bar>
+    <ion-content padding="true" class="has-tabs page-list" delegate-handle="listScroll" on-scroll="scroll()" lazy-scroll>
+       <div class="cate-cover" ng-click="viewCate()">
+           <img  ng-src="{{cateImg}}" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAATCAYAAAD1Yd/KAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAA1SURBVEhL7c6hAQAgEMPAwv6bdggwqCzAi5yJzWp7MsB+/c4RcoQcIUfIEXKEHCFHaMhIcgHlWAPm1ka+bQAAAABJRU5ErkJggg=="/>
+           <div class="title">{{currentCate.name}}</div>
+       </div>
+        <ion-list>
+            <ion-list>
+                <ion-movie data-ng-repeat="vo in videos" data-column="vo">
+                </ion-movie>
+            </ion-list>
+        </ion-list>
+        <ion-infinite-scroll ng-if="has_more" on-infinite="loadNextPage()" distance="3%">
+        </ion-infinite-scroll>
+         <div class="nodata nodata_line" ng-if="videos.length==0&&has_more===false">
+            <span class="nodata__tips">没有找到相关结果</span>
+        </div>
+        <div ng-if="has_more===false&&videos.length>0" class="text-center dark">
+            没有更多记录了...
+        </div>
+    </ion-content>
+<btn-scroll-top ng-init="handle='listScroll'"></btn-scroll-top>
+</ion-view>

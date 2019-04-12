@@ -1,0 +1,30 @@
+<ion-view class="page-search" ng-controller="searchCtrl">
+    <ion-header-bar class="bar-assertive item-input-inset">
+        <button class="button button-assertive icon ion-android-arrow-back" ng-click="$goback()"></button>
+        &nbsp;
+        <button ng-show="searchKey&&videos.length>=15" class="button button-assertive icon ion-ios-flask-outline" ng-click="openPopover()"></button>
+        <label class="item-input-wrapper assertive-bg label">
+            <i class="icon ion-ios-search placeholder-icon"></i>
+            <form ng-submit="submit(searchKey)">
+                <input id="input_key" type="search" placeholder="关键词..." ng-model="searchKey" name="search">
+            </form>
+            <span ng-show="searchKey" class="icon ion-close-circled button button-stable button-clear btn-clear" data-tap-disabled="true" ng-click="searchKey=''"></span>
+        </label>
+        <button class="button button-assertive" ng-click="submit(searchKey)">搜索</button>
+    </ion-header-bar>
+    <ion-content class="has-header" padding="true" overflow-scroll="true" lazy-scroll delegate-handle="searchScroll" on-scroll="scroll()">
+        <ion-list>
+            <ion-movie data-ng-repeat="vo in videos" data-column="vo">
+            </ion-movie>
+        </ion-list>
+        <div class="nodata nodata_line" ng-if="videos.length==0&&has_more===false">
+            <span class="nodata__tips">没有找到相关结果</span>
+        </div>
+        <div ng-if="has_more===false&&videos.length>0" class="text-center dark">
+            没有更多记录了...
+        </div>
+        <ion-infinite-scroll ng-if="has_more" on-infinite="loadNextPage(searchKey)" distance="3%">
+        </ion-infinite-scroll>
+    </ion-content>
+<btn-scroll-top ng-init="handle='searchScroll'"></btn-scroll-top>
+</ion-view>

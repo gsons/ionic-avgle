@@ -1,0 +1,15 @@
+.page-home {
+    .slide-titie {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 10px;
+        color: #FFF;
+        background-color: rgba(0, 0, 0, 0.4);
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+}

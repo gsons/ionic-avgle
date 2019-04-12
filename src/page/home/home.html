@@ -1,0 +1,24 @@
+<ion-header-bar class="bar-assertive">
+    <button class="button button-assertive icon ion-ios-search-strong" ng-click="$search()"></button>
+    <h1 class="title">Avgle</h1>
+    <button class="button button-assertive icon ion-refresh" ng-click="$refresh()"></button>
+</ion-header-bar>
+<ion-content padding="true" class="has-tabs page-home" delegate-handle="homeScroll" on-scroll="scroll()" lazy-scroll>
+    <ion-slides options="options" slider="data.slider" style="width:100%;height:200px;">
+        <ion-slide-page ng-repeat="vo in slideVideos" ng-click="view(vo)">
+            <img ion-img ngsrc="{{vo.previewUrl}}" alt="" style="width:100%;height: 100%">
+            <div class="slide-titie">{{vo.title}}</div>
+        </ion-slide-page>
+    </ion-slides>
+    <h4>Avgle- 最热播放视频</h4>
+    <ion-list>
+        <ion-movie data-ng-repeat="vo in videos" data-column="vo">
+        </ion-movie>
+    </ion-list>
+    <ion-infinite-scroll ng-if="has_more" on-infinite="loadNextPage()" distance="3%">
+    </ion-infinite-scroll>
+    <div ng-if="!has_more" class="text-center dark">
+        没有更多记录了...
+    </div>
+</ion-content>
+<btn-scroll-top ng-init="handle='homeScroll'"></btn-scroll-top>
